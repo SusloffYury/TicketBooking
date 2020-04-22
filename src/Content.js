@@ -35,6 +35,42 @@ const content = [
         title: 'New York',
         text: 'Hello to the New York',
     },
+    {
+        id: 7,
+        image: '',
+        title: 'New York',
+        text: 'Hello to the New York',
+    },
+    {
+        id:8,
+        image: '',
+        title: 'New York',
+        text: 'Hello to the New York',
+    },
+    {
+        id: 9,
+        image: '',
+        title: 'New York',
+        text: 'Hello to the New York',
+    },
+    {
+        id: 10,
+        image: '',
+        title: 'New York',
+        text: 'Hello to the New York',
+    },
+    {
+        id:11,
+        image: '',
+        title: 'New York',
+        text: 'Hello to the New York',
+    },
+    {
+        id: 12,
+        image: '',
+        title: 'New York',
+        text: 'Hello to the New York',
+    },
 
 ]
 export default content;

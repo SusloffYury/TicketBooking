@@ -22,8 +22,12 @@ function OrderCall(props) {
               </p>
             </Modal.Body>
             <Modal.Footer>
+              <Button
+               name = 'confirm'
+               onClick={props.handleChange}>
+                 Confirm
+               </Button>
               <Button onClick={props.onHide} 
-              
               >Close</Button>
             </Modal.Footer>
           </Modal>

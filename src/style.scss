@@ -1,13 +1,23 @@
 
-
 *{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color:rgb(116, 152, 194);
+    color:rgb(233, 194, 64);
  
     .Label{
         padding-right: 10px ;
     }
     
+        .Footer {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 50px;
+            background-color: saturate($color: #104f97, $amount: 1);
+    }
+    
+
 }
+
 
 @import "~bootstrap/scss/bootstrap";
