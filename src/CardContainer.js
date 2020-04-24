@@ -19,7 +19,7 @@ function CardContainer(props) {
                     <Card.Text>
                         {`${props.text} ${props.id}`}
                     </Card.Text>
-                    {(props.historyView) ? 'date order' :
+                    {(props.historyView) ? 'Order time: '+props.time :
                         (props.registration) ? 'Please Sign Up' : button}
 
                 </Card.Body>

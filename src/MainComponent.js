@@ -22,6 +22,7 @@ class MainComponent extends Component {
             historyView: false,
         }
     }
+
     handleChange = (e) => {
         const { name, value, id } = e.target
         this.setState({
@@ -55,10 +56,13 @@ class MainComponent extends Component {
             })
         }
         if (name === 'confirm') {
-            History.push(this.state.cards[this.state.id])
-
-
+            let date = Date()
+              
+            const card = this.state.cards[this.state.id]
+            card.time = date
+            History.push(card)
         }
+
         if (name === 'history') {
             this.setState(state => {
                 return {
@@ -67,6 +71,7 @@ class MainComponent extends Component {
 
             })
         }
+
         if (id) {
             this.setState({
                 id: id - 1
@@ -77,9 +82,8 @@ class MainComponent extends Component {
 
     OrdersContainer = () => {
 
-        const orderItem = this.state.historyView ? History : this.state.cards
-
-        return orderItem.map((el) => {
+        const CardContext = this.state.historyView ? History : this.state.cards
+        return CardContext.map((el) => {
             return <>
                 <Col>
                     <CardContainer
@@ -87,22 +91,26 @@ class MainComponent extends Component {
                         id={el.id}
                         title={el.title}
                         text={el.text}
-                        registration={this.state.registration}
+                        time={el.time}
                         handleChange={this.handleChange}
+                        registration={this.state.registration}
                         historyView={this.state.historyView}
 
                     />
                 </Col></>
+
         })
     }
 
 
+
     render() {
+
         console.log(`id = ${this.state.id}   
        history =${this.state.history}
       history type = ${typeof this.state.history}
       cards type = ${typeof this.state.cards}
-
+        
        `
 
         )
@@ -133,7 +141,7 @@ class MainComponent extends Component {
                                     onHide={addModalClose}
                                     handleChange={this.handleChange}
                                 /> :
-                                 this.OrdersContainer()
+                                this.OrdersContainer()
 
 
                         }
@@ -145,6 +153,6 @@ class MainComponent extends Component {
             </>
         )
     }
-}
 
+}
 export default MainComponent;
