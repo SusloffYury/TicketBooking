@@ -1,5 +1,5 @@
-import React  from 'react';
-import{Card, Button} from 'react-bootstrap'
+import React from 'react';
+import { Card, Button } from 'react-bootstrap'
 
 
 function CardContainer(props) {
@@ -12,14 +12,15 @@ function CardContainer(props) {
     </>
     return (
         <>
-                <Card style={{ width: '18rem' }} >
+            <Card style={{ width: '18rem' }} >
                 <Card.Img variant="top" src={props.image} />
                 <Card.Body >
                     <Card.Title>{props.title}</Card.Title>
                     <Card.Text>
                         {`${props.text} ${props.id}`}
                     </Card.Text>
-                    {(props.registration) ? 'Please Sign Up' : button}
+                    {(props.historyView) ? 'date order' :
+                        (props.registration) ? 'Please Sign Up' : button}
 
                 </Card.Body>
             </Card>

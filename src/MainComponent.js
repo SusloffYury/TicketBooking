@@ -5,6 +5,7 @@ import CardContainer from './CardContainer'
 import Content from './Content'
 import InputPanel from './InputPanel'
 import OrderCall from './OrderCall'
+import History from './History'
 
 class MainComponent extends Component {
     constructor(props) {
@@ -18,7 +19,7 @@ class MainComponent extends Component {
             id: '',
             modalShow: false,
             setModalShow: false,
-            history: [],
+            history: History,
             historyView: false,
         }
     }
@@ -35,11 +36,12 @@ class MainComponent extends Component {
         }
 
         if (name === 'logout') {
+            History = History.splice(0, History.length);
             this.setState({
                 registration: true,
                 email: '',
                 password: '',
-                history: '',
+
             })
         }
 
@@ -53,13 +55,9 @@ class MainComponent extends Component {
             })
         }
         if (name === 'confirm') {
-            const history = this.state.history.slice()
-            history.push(this.state.id)
+            History.push(this.state.id)
 
-            this.setState({
-                history: history
 
-            })
         }
         if (name === 'history') {
             this.setState(state => {
@@ -77,7 +75,7 @@ class MainComponent extends Component {
     }
 
 
-    OrdersContainer=()=> {
+    OrdersContainer = () => {
         return this.state.cards.map((el) => {
             return <>
                 <Col>
@@ -88,27 +86,25 @@ class MainComponent extends Component {
                         text={el.text}
                         registration={this.state.registration}
                         handleChange={this.handleChange}
+
                     />
                 </Col></>
         })
     }
     HistoryView = () => {
-            
-
-      return Array.from(this.state.history).map((el) => {
+        return History.map((id) => {
             return <>
                 <Col>
                     <CardContainer
                         className='cards'
-                        id={this.state.cards[el - 1].id}
-                        title={this.state.cards[el - 1].title}
-                        text={this.state.cards[el - 1].text}
+                        id={this.state.cards[id].id}
+                        title={this.state.cards[id].title}
+                        text={this.state.cards[id].text}
                         registration={this.state.registration}
                         handleChange={this.handleChange}
+                        historyView ={this.state.historyView} 
                     />
                 </Col></>
-
-
         })
     }
 
@@ -123,7 +119,7 @@ class MainComponent extends Component {
 
         )
 
-       
+
         let addModalClose = () => this.setState({
             setModalShow: false,
             order: false
