@@ -19,7 +19,6 @@ class MainComponent extends Component {
             id: '',
             modalShow: false,
             setModalShow: false,
-            history: History,
             historyView: false,
         }
     }
@@ -41,6 +40,7 @@ class MainComponent extends Component {
                 registration: true,
                 email: '',
                 password: '',
+                historyView: false,
 
             })
         }
@@ -55,7 +55,7 @@ class MainComponent extends Component {
             })
         }
         if (name === 'confirm') {
-            History.push(this.state.id)
+            History.push(this.state.cards[this.state.id])
 
 
         }
@@ -76,7 +76,10 @@ class MainComponent extends Component {
 
 
     OrdersContainer = () => {
-        return this.state.cards.map((el) => {
+
+        const orderItem = this.state.historyView ? History : this.state.cards
+
+        return orderItem.map((el) => {
             return <>
                 <Col>
                     <CardContainer
@@ -86,23 +89,8 @@ class MainComponent extends Component {
                         text={el.text}
                         registration={this.state.registration}
                         handleChange={this.handleChange}
+                        historyView={this.state.historyView}
 
-                    />
-                </Col></>
-        })
-    }
-    HistoryView = () => {
-        return History.map((id) => {
-            return <>
-                <Col>
-                    <CardContainer
-                        className='cards'
-                        id={this.state.cards[id].id}
-                        title={this.state.cards[id].title}
-                        text={this.state.cards[id].text}
-                        registration={this.state.registration}
-                        handleChange={this.handleChange}
-                        historyView ={this.state.historyView} 
                     />
                 </Col></>
         })
@@ -119,13 +107,10 @@ class MainComponent extends Component {
 
         )
 
-
         let addModalClose = () => this.setState({
             setModalShow: false,
             order: false
         })
-
-
 
         return (
             <>
@@ -133,7 +118,8 @@ class MainComponent extends Component {
                     handleChange={this.handleChange}
                     email={this.state.email}
                     registration={this.state.registration}
-                /></header>
+                />
+                </header>
 
                 <Container>
                     <Row>
@@ -147,9 +133,9 @@ class MainComponent extends Component {
                                     onHide={addModalClose}
                                     handleChange={this.handleChange}
                                 /> :
+                                 this.OrdersContainer()
 
-                                (this.state.historyView) ? this.HistoryView()
-                                    : this.OrdersContainer()
+
                         }
                     </Row>
                 </Container>
